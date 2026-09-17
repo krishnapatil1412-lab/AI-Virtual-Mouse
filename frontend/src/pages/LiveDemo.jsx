@@ -1,4 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import {
+  socket,
+  connectSocket,
+  disconnectSocket
+} from '../socket';
 import { FilesetResolver, HandLandmarker } from '@mediapipe/tasks-vision';
 import './LiveDemo.css';
 
@@ -113,6 +118,34 @@ function LiveDemo() {
       stopCamera();
     };
   }, []);
+  // -----------------------------------------
+// SOCKET.IO CONNECTION
+// -----------------------------------------
+useEffect(() => {
+  connectSocket();
+
+  const handleConnect = () => {
+    console.log('✅ Connected to Render:', socket.id);
+  };
+
+  const handleDisconnect = () => {
+    console.log('🔴 Disconnected from Render');
+  };
+
+  const handleConnectError = (error) => {
+    console.error('❌ Connection Error:', error.message);
+  };
+
+  socket.on('connect', handleConnect);
+  socket.on('disconnect', handleDisconnect);
+  socket.on('connect_error', handleConnectError);
+
+  return () => {
+    socket.off('connect', handleConnect);
+    socket.off('disconnect', handleDisconnect);
+    socket.off('connect_error', handleConnectError);
+  };
+}, []);
 
   // -----------------------------------------
   // DETECT HANDS

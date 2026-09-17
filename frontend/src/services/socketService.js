@@ -1,10 +1,26 @@
 import { io } from 'socket.io-client';
 
-const SOCKET_URL = 'http://localhost:5000';
+const SOCKET_URL =
+  'https://ai-virtual-mouse-mdj7.onrender.com';
 
-// Create a singleton instance
 export const socket = io(SOCKET_URL, {
-  autoConnect: false, // We'll connect manually when the dashboard mounts
+  autoConnect: false,
+  transports: ['polling', 'websocket'],
+  reconnection: true,
+  reconnectionAttempts: 5,
+  reconnectionDelay: 2000,
+});
+
+socket.on('connect', () => {
+  console.log('✅ Connected to Render:', socket.id);
+});
+
+socket.on('connect_error', (error) => {
+  console.error('❌ Socket connection error:', error.message);
+});
+
+socket.on('disconnect', (reason) => {
+  console.log('🔴 Socket disconnected:', reason);
 });
 
 export const connectSocket = () => {
