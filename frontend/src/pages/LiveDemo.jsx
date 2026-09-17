@@ -3,7 +3,7 @@ import {
   socket,
   connectSocket,
   disconnectSocket
-} from '../socket';
+} from '../services/socketService';
 import { FilesetResolver, HandLandmarker } from '@mediapipe/tasks-vision';
 import './LiveDemo.css';
 
