@@ -1,3 +1,4 @@
+import LiveDemo from './pages/LiveDemo';
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { connectSocket, disconnectSocket } from './services/socketService';
@@ -74,6 +75,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage setIsCameraActive={setIsCameraActive} />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/about" element={<div style={{padding: '2rem'}}>About Page Placeholder</div>} />
+          <Route path="/demo" element={<LiveDemo />} />
         </Routes>
       </div>
     </div>
