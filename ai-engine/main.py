@@ -69,7 +69,7 @@ def get_distance(p1, p2, img_w, img_h):
 
 def main():
     try:
-        sio.connect('http://localhost:5000')
+        sio.connect('https://ai-virtual-mouse-mdj7.onrender.com')
     except Exception as e:
         print(f"Failed to connect to backend: {e}")
         return
