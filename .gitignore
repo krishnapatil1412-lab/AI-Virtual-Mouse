@@ -1,0 +1,20 @@
+node_modules/
+dist/
+build/
+.env
+.DS_Store
+users.json
+
+# Python
+venv/
+myenv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+.pytest_cache/
+
+.venv/
+.venv-1/
